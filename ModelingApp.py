@@ -1,13 +1,16 @@
 import os
 from flask import Flask, request, redirect, url_for
+
 from flask.templating import render_template
 import generator as gg
 from werkzeug.utils import secure_filename
+
 
 UPLOAD_FOLDER = 'C:\\Users\\Krzychu\\PycharmProjects\\untitled20\\uploads\\'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 

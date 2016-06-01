@@ -2,10 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+
 <style>
-body {
-  overflow:hidden;
-   margin:0;
+
+#menu
+{
+    position: absolute;
+    left:200px;
+}
+.menu-item
+{
+    width: auto;
+    height: 30px;
+    padding: 0 23px;
+    float: left;
+    background: #eee;
+    border: 1px solid grey;
+    line-height: 30px;
+    cursor: default;
+}
+
+.menu-item:hover
+{
+    background: #9ad4de;
+}
+
+table
+{
+    width:50px;
+}
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+table#t01
+{
+    position:absolute;
+    left:20px;
+    top:50px;
+    width:180px;
+}
+th, td
+{
+    padding: 5px;
+    text-align: left;
+}
+table#t01 tr:nth-child(even)
+{
+    background-color: #eee;
+}
+table#t01 tr:nth-child(odd)
+{
+   background-color:#fff;
+}
+table#t01 th
+{
+    background-color: black;
+    color: white;
+}
+
+body
+{
+    overflow:hidden;
+    margin:0;
 }
 
 text {
@@ -16,20 +76,57 @@ text {
 </style>
 </head>
 <body>
- N: {{ N }}
-K: {{ K }}
-avg_degree: {{ avgdegree }}
-diameter: {{ diam }}
-transitivity: {{ tran }}
-Average clustering coefficient: {{ avgcl }}
-{##}
-{#    {% if wynik %}#}
-{#      <h1>Wynik to: {{ wynik }}!</h1>#}
-{#    {% else %}#}
-{#      <h1>qwer wyniku!</h1>#}
-{#    {% endif %}#}
+
+<div id="menu">
+    <a href="./generate">
+        <div class="menu-item">Generuj</div>
+    </a>
+        <a href="./upload">
+        <div class="menu-item">Upload</div>
+    </a>
+    <a href="./choose">
+        <div class="menu-item">Wybierz</div>
+    </a>
+    <a href="./save">
+        <div class="menu-item">Zapisz</div>
+    </a>
+</div>
+
+
+
+<table id="t01">
+  <tr>
+    <th>Miara</th>
+    <th>Wartość</th>
+  </tr>
+  <tr>
+    <td>N</td>
+    <td>{{ N }}</td>
+  </tr>
+  <tr>
+    <td>K</td>
+    <td>{{ K }}</td>
+  </tr>
+  <tr>
+    <td>avg_degree</td>
+    <td> {{ avgdegree }}</td>
+  </tr>
+  <tr>
+    <td>diameter</td>
+    <td>{{ diam }}</td>
+  </tr>
+      <tr>
+    <td>transitivity</td>
+    <td>{{ tran }}</td>
+  </tr>
+      <tr>
+    <td>avg_clustering coefficient</td>
+    <td>{{ avgcl }}</td>
+  </tr>
+</table>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
+ <div id="grapholder" style="position: absolute; top:35px; left:200px; height:700px; width:1000px;"></div>
 <script>
 var w = window.innerWidth;
 var h = window.innerHeight;
@@ -71,7 +168,7 @@ var max_stroke = 4.5;
 var max_base_node_size = 36;
 var min_zoom = 0.1;
 var max_zoom = 7;
-var svg = d3.select("body").append("svg");
+var svg = d3.select("#grapholder").append("svg");
 var zoom = d3.behavior.zoom().scaleExtent([min_zoom,max_zoom])
 var g = svg.append("g");
 svg.style("cursor","move");
