@@ -93,7 +93,6 @@ text {
 </div>
 
 
-
 <table id="t01">
   <tr>
     <th>Miara</th>
@@ -123,6 +122,11 @@ text {
     <td>avg_clustering coefficient</td>
     <td>{{ avgcl }}</td>
   </tr>
+    <tr>
+    <td>standard deviation</td>
+    <td>{{ stddev }}</td>
+  </tr>
+
 </table>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -143,9 +147,9 @@ var max_score = 1;
 
 var color = d3.scale.linear()
   .domain([min_score, (min_score+max_score)/2, max_score])
-  .range(["lime", "yellow", "black"]);
+  .range(["red", "yellow", "black"]);
 
-var highlight_color = "red";
+var highlight_color = "blue";
 var highlight_trans = 0.1;
 
 var size = d3.scale.pow().exponent(1)
@@ -153,8 +157,8 @@ var size = d3.scale.pow().exponent(1)
   .range([10,90]);
 
 var force = d3.layout.force()
-  .linkDistance(40)
-  .charge(-800)
+  .linkDistance(150)
+  .charge(-600)
   .size([w,h]);
 
 var default_node_color = "#ccc";

@@ -5,9 +5,8 @@ from flask.templating import render_template
 import generator as gg
 from werkzeug.utils import secure_filename
 
-
-UPLOAD_FOLDER = 'C:\\Users\\Krzychu\\PycharmProjects\\untitled20\\uploads\\'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+UPLOAD_FOLDER = 'C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\uploads\\'
+ALLOWED_EXTENSIONS = set(['graphml'])
 
 app = Flask(__name__)
 
@@ -21,8 +20,13 @@ def allowed_file(filename):
 
 @app.route('/')
 def hello_world():
-    return render_template("index.html", N=gg.generate()[0], K=gg.generate()[1], avgdegree=gg.generate()[2],
-                           diam=gg.generate()[3], tran=gg.generate()[4], avgcl=gg.generate()[5])
+    datalist = gg.generate()
+    return render_template("index.html", N=datalist[0], K=datalist[1], avgdegree=datalist[2],
+                           diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
+                           stddev=datalist[6])
+    # return render_template("index.html", N=gg.generate()[0], K=gg.generate()[1], avgdegree=gg.generate()[2],
+    #                        diam=gg.generate()[3], tran=gg.generate()[4], avgcl=gg.generate()[5],
+    #                        stddev=gg.generate()[6])
 
 
 @app.route("/uploaded")
