@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <meta charset="utf-8">
 
 <style>
@@ -76,10 +77,32 @@ text {
 </style>
 </head>
 <body>
+<script>
+    $(document).ready(function() {
+        $('#generate').click(function() {
+                $('.menu-gen').slideToggle("fast");
+        });
+    });
+
+</script>
+
+
+
 
 <div id="menu">
-    <a href="./generate">
-        <div class="menu-item">Generuj</div>
+{#    <a href="./generate">#}
+        <div id="generate" class="menu-item">Generuj
+            <div class="menu-gen" style="display: none;">
+                <ul>
+                    <a href="./generate-ba"><li>Barabasi-Albert</li></a>
+                    <a href="./generate-ws"><li>Watts-Strogatz</li></a>
+                    <a href="./generate-er"><li>Erdo-Renyi</li></a>
+                    <a href="./generate-sf"><li>Scale Free</li></a>
+
+                </ul>
+            </div>
+
+        </div>
     </a>
         <a href="./upload">
         <div class="menu-item">Upload</div>
