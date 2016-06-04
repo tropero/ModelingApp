@@ -7,7 +7,12 @@ import os
 
 
 def generate(g_model, g_given_data_dist):
-    if g_model == 1:
+    print(g_model)
+    print(type(g_model))
+    print(g_given_data_dist)
+    print(type(int(g_model)))
+
+    if int(g_model) == 1:
         n = g_given_data_dist['number_of_nodes']
         m = g_given_data_dist['number_of_edges']
         seed = g_given_data_dist['seed']
@@ -16,7 +21,7 @@ def generate(g_model, g_given_data_dist):
             GG = nx.barabasi_albert_graph(n, m, seed)
         else:
             GG = nx.barabasi_albert_graph(n, m)
-        print("GG = nx.barabasi_albert_graph(%s, %s)" % (n, m))
+        print("!!!GG = nx.barabasi_albert_graph(%d, %d)" % (n, m))
 
     elif g_model == 2:
         # given_data_dict = {'number_of_nodes': '', 'number_of_neighbors': '', 'propability': '', 'seed': ''}
@@ -25,14 +30,14 @@ def generate(g_model, g_given_data_dist):
         k = g_given_data_dist['number_of_neighbors']
         p = g_given_data_dist['propability']
         seed = g_given_data_dist['seed']
-        #print("watts_strogatz_graph n: %s k: %s p: %s seed: %s" % (n, k, p, seed))
+        # print("watts_strogatz_graph n: %s k: %s p: %s seed: %s" % (n, k, p, seed))
         if seed:
             GG = nx.watts_strogatz_graph(n, k, p, seed)
         else:
             GG = nx.watts_strogatz_graph(n, k, p)
     elif g_model == 3:
 
-        #given_data_dict = {'number_of_nodes': '', 'propability': '', 'seed': ''}
+        # given_data_dict = {'number_of_nodes': '', 'propability': '', 'seed': ''}
 
         n = g_given_data_dist['number_of_nodes']
         p = g_given_data_dist['propability']
@@ -42,13 +47,10 @@ def generate(g_model, g_given_data_dist):
             GG = nx.nx.erdos_renyi_graph(n, p, seed)
         else:
             GG = nx.nx.erdos_renyi_graph(n, p)
-    else:
-        GG = nx.scale_free_graph(80, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
-                           seed=None)
-
-
-
-    #GG = nx.erdos_renyi_graph(100, 0.1)
+    # else:
+    #     GG = nx.scale_free_graph(80, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
+    #                        seed=None)
+    # GG = nx.erdos_renyi_graph(100, 0.1)
     # GG = nx.scale_free_graph(350, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
     #                        seed=None)
     # GG = nx.watts_strogatz_graph(100, 5, 0.05)
@@ -74,7 +76,7 @@ def generate(g_model, g_given_data_dist):
 
     # print(" stand dev: %f" % standard_deviation)
     for node in gg.nodes():
-        #print("Node %d Degree %s" % (node, gg.neighbors(node)))
+        # print("Node %d Degree %s" % (node, gg.neighbors(node)))
         current_dev = math.pow((len(gg.neighbors(node)) - avg_deg), 2)
         standard_deviation += current_dev
         if len(gg.neighbors(node)) not in list:
@@ -104,7 +106,6 @@ def generate(g_model, g_given_data_dist):
     # print(G.nodes())
     #
     # print(G.edges())
-
 
 
     with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\graph.json", "w") as fo:

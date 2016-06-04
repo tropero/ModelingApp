@@ -24,6 +24,10 @@ def hello_world():
         print("key")
         print(request.get_data())
         model = request.form['model']
+        print("key")
+
+        print(type(model))
+
         if model == "1":
             given_data_dict = {'number_of_nodes': '', 'number_of_edges': '', 'seed': ''}
 
@@ -130,8 +134,7 @@ def hello_world():
 
     else:
         model = 1
-
-        given_data_dict = {'number_of_nodes': 10, 'number_of_edges': 3, 'seed': ''}
+        given_data_dict = {'number_of_nodes': 20, 'number_of_edges': 3, 'seed': ''}
     # model = 1
     datalist = gg.generate(model, given_data_dict)
     return render_template("index.html", mod=model, N=datalist[0], K=datalist[1], avgdegree=datalist[2],
