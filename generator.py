@@ -6,12 +6,53 @@ import matplotlib.pyplot as plt
 import os
 
 
-def generate():
-    GG = nx.erdos_renyi_graph(100, 0.1)
-    #GG = nx.scale_free_graph(350, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
+def generate(g_model, g_given_data_dist):
+    if g_model == 1:
+        n = g_given_data_dist['number_of_nodes']
+        m = g_given_data_dist['number_of_edges']
+        seed = g_given_data_dist['seed']
+        print("barabasi_albert_graph n: %s m: %s seed: %s" % (n, m, seed))
+        if seed:
+            GG = nx.barabasi_albert_graph(n, m, seed)
+        else:
+            GG = nx.barabasi_albert_graph(n, m)
+        print("GG = nx.barabasi_albert_graph(%s, %s)" % (n, m))
+
+    elif g_model == 2:
+        # given_data_dict = {'number_of_nodes': '', 'number_of_neighbors': '', 'propability': '', 'seed': ''}
+        # watts_strogatz_graph(100, 5, 0.05)
+        n = g_given_data_dist['number_of_nodes']
+        k = g_given_data_dist['number_of_neighbors']
+        p = g_given_data_dist['propability']
+        seed = g_given_data_dist['seed']
+        #print("watts_strogatz_graph n: %s k: %s p: %s seed: %s" % (n, k, p, seed))
+        if seed:
+            GG = nx.watts_strogatz_graph(n, k, p, seed)
+        else:
+            GG = nx.watts_strogatz_graph(n, k, p)
+    elif g_model == 3:
+
+        #given_data_dict = {'number_of_nodes': '', 'propability': '', 'seed': ''}
+
+        n = g_given_data_dist['number_of_nodes']
+        p = g_given_data_dist['propability']
+        seed = g_given_data_dist['seed']
+        print("erdos_renyi_graph n: %s p: %s seed: %s" % (n, p, seed))
+        if seed:
+            GG = nx.nx.erdos_renyi_graph(n, p, seed)
+        else:
+            GG = nx.nx.erdos_renyi_graph(n, p)
+    else:
+        GG = nx.scale_free_graph(80, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
+                           seed=None)
+
+
+
+    #GG = nx.erdos_renyi_graph(100, 0.1)
+    # GG = nx.scale_free_graph(350, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
     #                        seed=None)
-    #GG = nx.watts_strogatz_graph(100, 5, 0.05)
-    #GG = nx.barabasi_albert_graph(100, 3)
+    # GG = nx.watts_strogatz_graph(100, 5, 0.05)
+    # GG = nx.barabasi_albert_graph(100, 3)
 
 
     G2 = GG.to_undirected()
@@ -31,33 +72,31 @@ def generate():
 
     list = []
 
-
-    #print(" stand dev: %f" % standard_deviation)
+    # print(" stand dev: %f" % standard_deviation)
     for node in gg.nodes():
-        print("Node %d Degree %s" % (node, GG.neighbors(node)))
+        #print("Node %d Degree %s" % (node, gg.neighbors(node)))
         current_dev = math.pow((len(gg.neighbors(node)) - avg_deg), 2)
         standard_deviation += current_dev
         if len(gg.neighbors(node)) not in list:
             list.append(len(gg.neighbors(node)))
-        #print(" stand dev ++ : %f" % standard_deviation)
+            # print(" stand dev ++ : %f" % standard_deviation)
 
     standard_deviation = math.sqrt(standard_deviation / N)
-    print(" stand koniec : %f" % standard_deviation)
-    print("spotkane stopnie: ")
-    print(list)
+    # print(" stand koniec : %f" % standard_deviation)
+    # print("spotkane stopnie: ")
+    # print(list)
     listSorted = sorted(list, reverse=True)
     print(listSorted)
     sum_of_list = sum(listSorted)
     length_of_list = len(listSorted)
-    avg_of_list = sum_of_list/length_of_list
-    print("Sum l: %d Len l: %d Avg: %d" %(sum_of_list, length_of_list, avg_of_list))
-
+    avg_of_list = sum_of_list / length_of_list
+    print("Sum l: %d Len l: %d Avg: %d" % (sum_of_list, length_of_list, avg_of_list))
 
     tup1.append(N)
     tup1.append(K)
     tup1.append(round(avg_deg, 2))
 
-    #print(nx.degree_histogram(gg))
+    # print(nx.degree_histogram(gg))
 
 
     # GG = nx.random_lobster(100, p1=0.6, p2=0.4, seed=None)
