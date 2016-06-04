@@ -29,6 +29,30 @@ def hello_world():
     #                        stddev=gg.generate()[6])
 
 
+@app.route("/generate")
+def generate():
+    return render_template("getData.html")
+
+@app.route('/xxx', methods=['POST'])
+def test():
+    if request.method == 'POST':
+        model = request.form['model']
+        return "model to: "+model
+    #                    request.form['password']):
+    #         return log_the_user_in(request.form['username'])
+    #     else:
+    #
+    # error = 'Invalid username/password'
+    #     # if valid_login(request.form['username'],
+    #     #                request.form['password']):
+    #     #     return log_the_user_in(request.form['username'])
+    #     # else:
+    #     #     error = 'Invalid username/password'
+    # # the code below is executed if the request method
+    # # was GET or the credentials were invalid
+    # return render_template('login.html', error=error)
+
+
 @app.route("/uploaded")
 def uploaded():
     return """

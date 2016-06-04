@@ -1,0 +1,89 @@
+{% block body %}
+  <h2>Generowanie grafów</h2>
+  <head>
+    <meta charset="UTF-8">
+    <title>Generowanie modeli</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+    $(function() {
+    $('select').change(function() {
+        var val = $(this).val();
+        if (val) {
+            $('div:not(#div' + val + ')').slideUp();
+            $('#div' + val).slideDown();
+        } else {
+            $('div').slideDown();
+        }
+    });
+});
+</script>
+
+<select>
+    <option>
+
+    </option>
+    <option value="1">Model Barabasi-Albert</option>
+    <option value="2">Model Watts-Strogatz</option>
+    <option value="3">Model Erdo-Renyi</option>
+
+</select>
+<div id="div1" >
+      <form action="{{ url_for('xxx') }}" method=post>
+          Biblioteka NetworkX udostępnia generowanie losowych grafów z uwzględnieniem modelu Barabasi-Albert. W tym modelu występują preferencyjne dołączenia.
+          Graf składający się z n wierzchołków rośnie poprzez dodawanie do każdego z nich m krawędzi, które są preferencyjnie dodawane do istniejących wierzchołków z najwyższym stopniem.
+          Returns a random graph according to the Barabási–Albert preferential attachment model.
+    <dl>
+      <input type=number name=model value="1" style="visibility: hidden">
+      <dt>N (int):
+      <dd><input type=number name=number_of_nodes>
+      <dt>M (int):
+      <dd><input type=number name=number_of_edges>
+      <dt>Ziarno (int, nie wymagane)
+      <dd><input type=number name=seed>
+      <dd><input type=submit value=Generuj>
+    </dl>
+  </form>
+</div>
+
+<div id="div2">
+      <form action="{{ url_for('generate') }}" method=post>
+          Biblioteka NetworkX udostępnia generowanie losowych grafów z uwzględnieniem modelu Watts-Strogatz. Tworzony jest cykl składający się z n wierzchołków.
+          Każdy z wierzchołków jest połączony z najbliższymi k sąsiadami (lub k-1 sąsiadami, jeżeli k jest nieparzyte). Następnie przekablowania są tworzone poprzez zmiany istniejących krawędzi.
+          Każda krawędź (u, v) w grafie pierścieniowym z prawdopodobieństwem p zmieniana jest na nową krawędź (u, v) z losowo wybranym istniejącym wierzchołkiem w.
+    <dl>
+      <dt>n (int):
+      <dd><input type=number name=number_of_nodes>
+      <dt>k (int):
+      <dd><input type=number name=number_of_neighbors>
+      <dt>p (float):
+      <dd><input type=number step="0.01" min=0 max=1 name=propability>
+      <dt>Ziarno (int, nie wymagane)
+      <dd><input type=number name=seed>
+      <dd><input type=submit value=Generuj>
+    </dl>
+
+  </form>
+</div>
+
+<div id="div3">
+      <form action="{{ url_for('test') }}" method=post>
+          Biblioteka NetworkX udostępnia generowanie losowych grafów z uwzględnieniem modelu Erdo-Renyi.
+          Zwracany jest losowy graf o n wierzchołkach, w którym każda możliwa krawędź tworzona jest z prawdopodobieństwem p.
+    <dl>
+      <dt>n (int):
+      <dd><input type=number name=number_of_nodes>
+      <dt>p (float):
+      <dd><input type=number step="0.01" min=0 max=1 name=propability>
+      <dt>Ziarno (int, nie wymagane):
+      <dd><input type=number name=seed>
+      <dd><input type=submit value=Generuj>
+    </dl>
+
+  </form>
+</div>
+
+
+{% endblock %}

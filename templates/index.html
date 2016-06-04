@@ -13,7 +13,7 @@
 }
 .menu-item
 {
-    width: auto;
+    width: 60px;
     height: 30px;
     padding: 0 23px;
     float: left;
@@ -27,7 +27,11 @@
 {
     background: #9ad4de;
 }
+.menu-gen
+{
+    width:100px;
 
+}
 table
 {
     width:50px;
@@ -90,19 +94,8 @@ text {
 
 
 <div id="menu">
-{#    <a href="./generate">#}
-        <div id="generate" class="menu-item">Generuj
-            <div class="menu-gen" style="display: none;">
-                <ul>
-                    <a href="./generate-ba"><li>Barabasi-Albert</li></a>
-                    <a href="./generate-ws"><li>Watts-Strogatz</li></a>
-                    <a href="./generate-er"><li>Erdo-Renyi</li></a>
-                    <a href="./generate-sf"><li>Scale Free</li></a>
-
-                </ul>
-            </div>
-
-        </div>
+    <a href="./generate">
+        <div id="generate" class="menu-item">Generuj</div>
     </a>
         <a href="./upload">
         <div class="menu-item">Upload</div>

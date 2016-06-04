@@ -7,11 +7,11 @@ import os
 
 
 def generate():
-    #GG = nx.erdos_renyi_graph(100, 0.5)
-    GG = nx.scale_free_graph(50, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
-                            seed=None)
+    GG = nx.erdos_renyi_graph(100, 0.1)
+    #GG = nx.scale_free_graph(350, alpha=0.53, beta=0.33, gamma=0.14, delta_in=0, delta_out=0, create_using=None,
+    #                        seed=None)
     #GG = nx.watts_strogatz_graph(100, 5, 0.05)
-    #GG = nx.barabasi_albert_graph(100, 2)
+    #GG = nx.barabasi_albert_graph(100, 3)
 
 
     G2 = GG.to_undirected()
@@ -55,7 +55,7 @@ def generate():
 
     tup1.append(N)
     tup1.append(K)
-    tup1.append(avg_deg)
+    tup1.append(round(avg_deg, 2))
 
     #print(nx.degree_histogram(gg))
 

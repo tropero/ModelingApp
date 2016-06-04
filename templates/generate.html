@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Generowanie modeli</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+    $(function() {
+    $('select').change(function() {
+        var val = $(this).val();
+        if (val) {
+            $('div:not(#div' + val + ')').slideUp();
+            $('#div' + val).slideDown();
+        } else {
+            $('div').slideDown();
+        }
+    });
+});
+</script>
+
+<select>
+    <option>
+
+    </option>
+    <option value="1">Model Barabasi-Albert</option>
+    <option value="2">Model Watts-Strogatz</option>
+    <option value="3">Model Erdo-Renyi</option>
+    <option value="3">Model scale-free</option>
+
+</select>
+<div id="div1">this is div 1</div>
+
+<div id="div2">this is div 2</div>
+
+<div id="div3">this is div 3</div>
+
+<div id="div3">this is div 3</div>
+
+</body>
+</html>
