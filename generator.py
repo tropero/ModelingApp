@@ -108,19 +108,21 @@ def generate(g_model, g_given_data_dist):
     #
     # print(G.edges())
 
+    json = ""
 
     with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\g.json", "w") as fo:
         fo.write("{ \n  \"graph\": [], \n  \"links\": [")
-        print("{ \n  \"graph\": [], \n  \"links\": [")
+
+        json += "{ \n  \"graph\": [], \n  \"links\": ["
         for edge in gg.edges()[:-1]:
             fo.write("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
-            print("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
+            json += ("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
         else:
             fo.write("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
-            print("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
+            json += ("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
 
         fo.write("\t],   \"nodes\": [")
-        print("\t],   \"nodes\": [")
+        json += "\t],   \"nodes\": ["
         for node in gg.nodes()[:-1]:
             if len(gg.neighbors(node)) > avg_of_list:
                 kscore = 0
@@ -130,7 +132,7 @@ def generate(g_model, g_given_data_dist):
                 ((len(gg.neighbors(node)) / 200) * 200),
                 kscore,
                 (str(node))))
-            print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
+            json += ("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
                 ((len(gg.neighbors(node)) / 200) * 200),
                 kscore,
                 (str(node))))
@@ -141,12 +143,16 @@ def generate(g_model, g_given_data_dist):
                 kscore = 1
             fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
                 ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node + 1))))
-            print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
+            json += ("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
                 ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node + 1))))
 
         fo.write("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
-        print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
+        json += ("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
     fo.close()
+
+    print("otrzymany json: ")
+    print(json)
+
 
     print("Is multigraph? : %r " % gg.is_multigraph())
 
@@ -173,5 +179,6 @@ def generate(g_model, g_given_data_dist):
 
     tup1.append(round(avg_clust, 2))
     tup1.append(round(standard_deviation, 2))
+    tup1.append(json)
 
     return tup1

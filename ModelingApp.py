@@ -19,9 +19,8 @@ def allowed_file(filename):
 
 
 @app.route('/', methods=['GET', 'POST'])
-def hello_world():
+def hello():
     if request.method == 'POST':
-        print("key")
         print(request.get_data())
         model = request.form['model']
         print("key")
@@ -36,20 +35,14 @@ def hello_world():
             if request.form['number_of_nodes'] is not '':
                 number_of_nodes = request.form['number_of_nodes']
                 given_data_dict['number_of_nodes'] = int(number_of_nodes)
-            else:
-                number_of_nodes = 666
 
             if request.form['number_of_edges'] is not '':
                 number_of_edges = request.form['number_of_edges']
                 given_data_dict['number_of_edges'] = int(number_of_edges)
-            else:
-                number_of_edges = 666
 
             if request.form['seed'] is not '':
                 seed = request.form['seed']
                 given_data_dict['seed'] = int(seed)
-            else:
-                given_data_dict['seed'] = None
 
             print("dla 1 dict:")
             print(given_data_dict)
@@ -62,28 +55,18 @@ def hello_world():
                 number_of_nodes = request.form['number_of_nodes']
                 given_data_dict['number_of_nodes'] = int(number_of_nodes)
 
-            else:
-                number_of_nodes = 666
-
             if request.form['number_of_neighbors'] is not '':
                 number_of_neighbors = request.form['number_of_neighbors']
                 given_data_dict['number_of_neighbors'] = int(number_of_neighbors)
-
-            else:
-                number_of_neighbors = 666
 
             if request.form['propability'] is not '':
                 propability = request.form['propability']
                 given_data_dict['propability'] = float(propability)
 
-            else:
-                propability = 666
-
             if request.form['seed'] is not '':
                 seed = request.form['seed']
                 given_data_dict['seed'] = int(seed)
-            else:
-                seed = 666
+
             print("dla 2 dict:")
             print(given_data_dict)
 
@@ -95,26 +78,18 @@ def hello_world():
                 number_of_nodes = request.form['number_of_nodes']
                 given_data_dict['number_of_nodes'] = int(number_of_nodes)
 
-            else:
-                number_of_nodes = 666
-
             if request.form['propability'] is not '':
                 propability = request.form['propability']
                 given_data_dict['propability'] = float(propability)
 
-            else:
-                propability = 666
-
             if request.form['seed'] is not '':
                 seed = request.form['seed']
                 given_data_dict['seed'] = int(seed)
-            else:
-                seed = 666
+
             print("dla 3 dict:")
             print(given_data_dict)
 
         datalist = gg.generate(model, given_data_dict)
-
 
 
     else:
@@ -124,16 +99,12 @@ def hello_world():
     # model = 1
     return render_template("index.html", mod=model, N=datalist[0], K=datalist[1], avgdegree=datalist[2],
                            diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
-                           stddev=datalist[6])
-    # return render_template("index.html", N=gg.generate()[0], K=gg.generate()[1], avgdegree=gg.generate()[2],
-    #                        diam=gg.generate()[3], tran=gg.generate()[4], avgcl=gg.generate()[5],
-    #                        stddev=gg.generate()[6])
+                           stddev=datalist[6], json_model=datalist[7])
 
 
 @app.route("/generate")
 def generate():
     return render_template("getData.html")
-
 
 
 @app.route("/uploaded")
@@ -167,4 +138,3 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True, port=7777)
-
