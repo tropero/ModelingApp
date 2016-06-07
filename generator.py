@@ -108,44 +108,44 @@ def generate(g_model, g_given_data_dist):
     # print(G.edges())
 
 
-    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\g.json", "w") as fo:
-        fo.write("{ \n  \"graph\": [], \n  \"links\": [")
-        print("{ \n  \"graph\": [], \n  \"links\": [")
-        for edge in gg.edges()[:-1]:
-            fo.write("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
-            print("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
-        else:
-            fo.write("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
-            print("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
-
-        fo.write("\t],   \"nodes\": [")
-        print("\t],   \"nodes\": [")
-        for node in gg.nodes()[:-1]:
-            if len(gg.neighbors(node)) > avg_of_list:
-                kscore = 0
-            else:
-                kscore = 1
-            fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
-                ((len(gg.neighbors(node)) / 200) * 200),
-                kscore,
-                (str(node))))
-            print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
-                ((len(gg.neighbors(node)) / 200) * 200),
-                kscore,
-                (str(node))))
-        else:
-            if len(gg.neighbors(node)) > avg_of_list:
-                kscore = 0
-            else:
-                kscore = 1
-            fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node))))
-            print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node))))
-
-        fo.write("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
-        print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
-    fo.close()
+    # with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\g.json", "w") as fo:
+    #     fo.write("{ \n  \"graph\": [], \n  \"links\": [")
+    #     print("{ \n  \"graph\": [], \n  \"links\": [")
+    #     for edge in gg.edges()[:-1]:
+    #         fo.write("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
+    #         print("\t\t{\"source\": %d, \"target\": %d}," % (edge[0], edge[1]))
+    #     else:
+    #         fo.write("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
+    #         print("\t\t{\"source\": %d, \"target\": %d}" % (edge[0], edge[1]))
+    #
+    #     fo.write("\t],   \"nodes\": [")
+    #     print("\t],   \"nodes\": [")
+    #     for node in gg.nodes()[:-1]:
+    #         if len(gg.neighbors(node)) > avg_of_list:
+    #             kscore = 0
+    #         else:
+    #             kscore = 1
+    #         fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
+    #             ((len(gg.neighbors(node)) / 200) * 200),
+    #             kscore,
+    #             (str(node))))
+    #         print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}," % (
+    #             ((len(gg.neighbors(node)) / 200) * 200),
+    #             kscore,
+    #             (str(node))))
+    #     else:
+    #         if len(gg.neighbors(node)) > avg_of_list:
+    #             kscore = 0
+    #         else:
+    #             kscore = 1
+    #         fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
+    #             ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node))))
+    #         print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
+    #             ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node))))
+    #
+    #     fo.write("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
+    #     print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
+    # fo.close()
 
     print("Is multigraph? : %r " % gg.is_multigraph())
 
