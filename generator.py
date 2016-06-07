@@ -165,7 +165,7 @@ def generate(g_model, g_given_data_dist):
     print("Clustering coefficient of node 0 %f" % nx.clustering(gg, 0))
     # Clustering coefficient of all nodes (in a dictionary)
     clust_coefficients = nx.clustering(gg)
-    # Average clustering coefficient
+
     ccs = nx.clustering(gg)
     avg_clust = sum(ccs.values()) / len(ccs)
 
