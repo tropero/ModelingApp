@@ -113,7 +113,9 @@ def hello_world():
             print("dla 3 dict:")
             print(given_data_dict)
 
-        # print("model: %d n: %d m: %d p: %f k: %d " % (
+        datalist = gg.generate(model, given_data_dict)
+
+            # print("model: %d n: %d m: %d p: %f k: %d " % (
         #     model, number_of_nodes, number_of_edges, propability, number_of_neighbors))
         # if model == 1:
         #     n = request.form['number_of_nodes']
@@ -133,10 +135,10 @@ def hello_world():
         #     print("n: %d  p: %f seed: %d" % (n, p, seed))
 
     else:
-        model = 1
-        given_data_dict = {'number_of_nodes': 20, 'number_of_edges': 3, 'seed': ''}
+        model = "1"
+        given_data_dict = {'number_of_nodes': 10, 'number_of_edges': 3, 'seed': ''}
+        datalist = gg.generate(model, given_data_dict)
     # model = 1
-    datalist = gg.generate(model, given_data_dict)
     return render_template("index.html", mod=model, N=datalist[0], K=datalist[1], avgdegree=datalist[2],
                            diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
                            stddev=datalist[6])
