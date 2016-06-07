@@ -108,7 +108,7 @@ def generate(g_model, g_given_data_dist):
     # print(G.edges())
 
 
-    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\g.json", "w") as fo:
+    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\g.json", "w") as fo:
         fo.write("{ \n  \"graph\": [], \n  \"links\": [")
         print("{ \n  \"graph\": [], \n  \"links\": [")
         for edge in gg.edges()[:-1]:
@@ -146,7 +146,6 @@ def generate(g_model, g_given_data_dist):
         fo.write("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
         print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
     fo.close()
-    time.sleep(2)
 
     print("Is multigraph? : %r " % gg.is_multigraph())
 
