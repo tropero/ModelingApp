@@ -115,24 +115,7 @@ def hello_world():
 
         datalist = gg.generate(model, given_data_dict)
 
-            # print("model: %d n: %d m: %d p: %f k: %d " % (
-        #     model, number_of_nodes, number_of_edges, propability, number_of_neighbors))
-        # if model == 1:
-        #     n = request.form['number_of_nodes']
-        #     m = request.form['number_of_edges']
-        #     seed = request.form['seed']
-        #     print("n: %d m: %d seed: %d" % (n, m, seed))
-        # elif model == 2:
-        #     n = request.form['number_of_nodes']
-        #     m = request.form['number_of_neighbors']
-        #     p = request.form['propability']
-        #     seed = request.form['seed']
-        #     print("n: %d m: %d p: %f seed: %d" % (n, m, p, seed))
-        # elif model == 3:
-        #     n = request.form['number_of_nodes']
-        #     p = request.form['propability']
-        #     seed = request.form['seed']
-        #     print("n: %d  p: %f seed: %d" % (n, p, seed))
+
 
     else:
         model = "1"
@@ -151,25 +134,6 @@ def hello_world():
 def generate():
     return render_template("getData.html")
 
-
-@app.route('/xxx', methods=['POST'])
-def test():
-    if request.method == 'POST':
-        model = request.form['model']
-        return "model to: " + model
-        #                    request.form['password']):
-        #         return log_the_user_in(request.form['username'])
-        #     else:
-        #
-        # error = 'Invalid username/password'
-        #     # if valid_login(request.form['username'],
-        #     #                request.form['password']):
-        #     #     return log_the_user_in(request.form['username'])
-        #     # else:
-        #     #     error = 'Invalid username/password'
-        # # the code below is executed if the request method
-        # # was GET or the credentials were invalid
-        # return render_template('login.html', error=error)
 
 
 @app.route("/uploaded")
@@ -204,7 +168,3 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True, port=7777)
 
-    # do poprawy:
-    # opracować sposób do podawania parametrów i modelowania roznych topologii, czy to scale free czy np. scentralizowanych
-    # podawać parametr i otrzymywać topologie -> z nich wyliczać jakieś dane charakterystycze
-    # zrobić również ewolucję botnetów z paskiem, aby obserwować jak one się dodają do siebie podczas przesuwania paska

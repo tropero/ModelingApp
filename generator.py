@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import os
 import time
 
+
 def generate(g_model, g_given_data_dist):
     print(g_model)
     print(type(g_model))
@@ -108,7 +109,7 @@ def generate(g_model, g_given_data_dist):
     # print(G.edges())
 
 
-    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\g.json", "w") as fo:
+    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\g.json", "w") as fo:
         fo.write("{ \n  \"graph\": [], \n  \"links\": [")
         print("{ \n  \"graph\": [], \n  \"links\": [")
         for edge in gg.edges()[:-1]:
@@ -139,9 +140,9 @@ def generate(g_model, g_given_data_dist):
             else:
                 kscore = 1
             fo.write("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node+1))))
+                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node + 1))))
             print("\t\t{\"size\": %d, \"score\": %d, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node+1))))
+                ((len(gg.neighbors(node)) / 200) * 200), kscore, (str(node + 1))))
 
         fo.write("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
         print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
@@ -149,7 +150,7 @@ def generate(g_model, g_given_data_dist):
 
     print("Is multigraph? : %r " % gg.is_multigraph())
 
-    #print("Diameter of this graph: %f " % nx.diameter(gg))
+    # print("Diameter of this graph: %f " % nx.diameter(gg))
 
     # diameter = nx.diameter(gg)
     diameter = 5
@@ -174,21 +175,3 @@ def generate(g_model, g_given_data_dist):
     tup1.append(round(standard_deviation, 2))
 
     return tup1
-    # tup1.append(avg_clust)
-    #
-    # for p in tup1:
-    #     print(p)
-    #
-    # gg = GG.to_undirected()
-    #
-    # hartford_components = nx.connected_component_subgraphs(gg)
-    # hartford_mc = hartford_components[0]
-    # # Betweenness centrality
-    # bet_cen = nx.betweenness_centrality(hartford_mc)
-    # # Closeness centrality
-    # clo_cen = nx.closeness_centrality(hartford_mc)
-    # # Eigenvector centrality
-    # eig_cen = nx.eigenvector_centrality(hartford_mc)
-
-
-    # print("Betweenness centrality %f Closeness centrality %f Eigenvector centrality %f" % (bet_cen, clo_cen, eig_cen))
