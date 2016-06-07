@@ -12,7 +12,7 @@ def generate(g_model, g_given_data_dist):
     print(g_given_data_dist)
     print(type(int(g_model)))
 
-    if int(g_model) == 1:
+    if g_model == "1":
         n = g_given_data_dist['number_of_nodes']
         m = g_given_data_dist['number_of_edges']
         seed = g_given_data_dist['seed']
@@ -23,7 +23,7 @@ def generate(g_model, g_given_data_dist):
             GG = nx.barabasi_albert_graph(n, m)
         print("!!!GG = nx.barabasi_albert_graph(%d, %d)" % (n, m))
 
-    elif g_model == 2:
+    elif g_model == "2":
         # given_data_dict = {'number_of_nodes': '', 'number_of_neighbors': '', 'propability': '', 'seed': ''}
         # watts_strogatz_graph(100, 5, 0.05)
         n = g_given_data_dist['number_of_nodes']
@@ -35,7 +35,7 @@ def generate(g_model, g_given_data_dist):
             GG = nx.watts_strogatz_graph(n, k, p, seed)
         else:
             GG = nx.watts_strogatz_graph(n, k, p)
-    elif g_model == 3:
+    elif g_model == "3":
 
         # given_data_dict = {'number_of_nodes': '', 'propability': '', 'seed': ''}
 
@@ -108,7 +108,7 @@ def generate(g_model, g_given_data_dist):
     # print(G.edges())
 
 
-    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\graph.json", "w") as fo:
+    with open("C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\static\\test.json", "w") as fo:
         fo.write("{ \n  \"graph\": [], \n  \"links\": [")
         print("{ \n  \"graph\": [], \n  \"links\": [")
         for edge in gg.edges()[:-1]:
@@ -151,8 +151,8 @@ def generate(g_model, g_given_data_dist):
 
     print("Diameter of this graph: %f " % nx.diameter(gg))
 
-    diameter = nx.diameter(gg)
-
+    # diameter = nx.diameter(gg)
+    diameter = 5
     tup1.append(round(diameter, 2))
 
     print("Transivity of this graph: %f " % nx.transitivity(gg))
