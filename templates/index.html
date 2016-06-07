@@ -197,9 +197,9 @@ var zoom = d3.behavior.zoom().scaleExtent([min_zoom,max_zoom])
 var g = svg.append("g");
 svg.style("cursor","move");
 
-var model = {{ json_model|safe }};
+var model_nowy = {{ json_model|safe }};
 
-d3.json(model, function(error, graph) {
+d3.json(model_nowy, function(error, graph) {
 
 
 var linkedByIndex = {};
