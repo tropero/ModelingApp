@@ -197,10 +197,10 @@ var zoom = d3.behavior.zoom().scaleExtent([min_zoom,max_zoom])
 var g = svg.append("g");
 svg.style("cursor","move");
 
-var model_nowy = {{ json_model|safe }};
+var graph= {{ json_model|safe }};
 
-d3.json(model_nowy, function(error, graph) {
-
+//{#d3.json(model_nowy, function(error, graph) {#}
+//{##}
 
 var linkedByIndex = {};
     graph.links.forEach(function(d) {
@@ -468,7 +468,7 @@ function set_highlight(d)
 }
 }
 
-});
+//});
 
 function vis_by_type(type)
 {
