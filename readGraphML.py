@@ -120,7 +120,7 @@ def readGraphML(graph):
                 kscore = 0
             else:
                 kscore = 1
-
+ 
             print("\t\t{\"size\": %s, \"score\": %s, \"id\": \"%s\",\"type\": \"circle\"}" % (
                 int((len(gg.neighbors(node)) / len(gg.nodes())) * 10 + 1), kscore, (str(nodesListSorted[-1]))))
             json += ("\t\t{\"size\": %s, \"score\": %s, \"id\": \"%s\",\"type\": \"circle\"}" % (
