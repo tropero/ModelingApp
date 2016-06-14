@@ -134,7 +134,7 @@ def index():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             datalist = rg.readGraphML(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return render_template("index.html", mod="GraphML", N=datalist[0], K=datalist[1],
+            return render_template("index.html", mod=filename, N=datalist[0], K=datalist[1],
                                    avgdegree=datalist[2],
                                    diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
                                    stddev=datalist[6], json_model=datalist[7])

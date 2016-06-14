@@ -193,7 +193,7 @@ var graph= {{ json_model|safe }};
 var i = 0;
 var linkedByIndex = {};
     graph.links.forEach(function(d) {
-        alert("linkedByIndex "+d.source + "," + d.target + " i: "+i);
+        console.log("linkedByIndex "+d.source + "," + d.target + " i: "+i);
         i++;
 	linkedByIndex[d.source + "," + d.target] = true;
     });
@@ -224,7 +224,7 @@ var linkedByIndex = {};
 	.style("stroke-width",nominal_stroke)
 	.style("stroke", function(d) {
 	if (isNumber(d.score) && d.score>=0) return color(d.score);
-	else return default_link_color; })
+	else return default_link_color; });
 
 
   var node = g.selectAll(".node")
@@ -232,7 +232,7 @@ var linkedByIndex = {};
     .enter().append("g")
     .attr("class", "node")
 
-    .call(force.drag)
+    .call(force.drag);
 
 
 	node.on("dblclick.zoom", function(d) { d3.event.stopPropagation();
@@ -245,15 +245,12 @@ var linkedByIndex = {};
 	});
 
 
-
-
 	var tocolor = "fill";
 	var towhite = "stroke";
 	if (outline) {
 		tocolor = "stroke"
 		towhite = "fill"
 	}
-
 
 
   var circle = node.append("path")
