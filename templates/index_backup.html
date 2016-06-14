@@ -81,6 +81,14 @@ text {
 </style>
 </head>
 <body>
+<script>
+    $(document).ready(function() {
+        $('#generate').click(function() {
+                $('.menu-gen').slideToggle("fast");
+        });
+    });
+
+</script>
 
 
 <div id="menu">
@@ -190,11 +198,8 @@ var graph= {{ json_model|safe }};
 //{#d3.json(model_nowy, function(error, graph) {#}
 //{##}
 
-var i = 0;
 var linkedByIndex = {};
     graph.links.forEach(function(d) {
-        alert("linkedByIndex "+d.source + "," + d.target + " i: "+i);
-        i++;
 	linkedByIndex[d.source + "," + d.target] = true;
     });
 
@@ -203,11 +208,9 @@ var linkedByIndex = {};
     }
 
 	function hasConnections(a) {
-		for (var property in linkedByIndex)
-        {
+		for (var property in linkedByIndex) {
 				s = property.split(",");
-				if ((s[0] == a.index || s[1] == a.index) && linkedByIndex[property])
-                    return true;
+				if ((s[0] == a.index || s[1] == a.index) && linkedByIndex[property]) 					return true;
 		}
 	return false;
 	}

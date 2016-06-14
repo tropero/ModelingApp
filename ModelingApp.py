@@ -3,8 +3,9 @@ from flask import Flask, request, redirect, url_for
 import json
 from flask.templating import render_template
 import generator as gg
+import readGraphML as rg
 from werkzeug.utils import secure_filename
-
+import networkx as nx
 UPLOAD_FOLDER = 'C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\uploads\\'
 ALLOWED_EXTENSIONS = set(['graphml'])
 
@@ -106,13 +107,21 @@ def hello():
 def generate():
     return render_template("getData.html")
 
+@app.route("/read")
+def read():
+    datalist = rg.readGraphML('C:\\Users\\Krzychu\\Dropbox\\ModelingApp\\uploads\\cc.graphml')
+
+    return render_template("index.html", mod="wczytany GraphML", N=datalist[0], K=datalist[1], avgdegree=datalist[2],
+                           diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
+                           stddev=datalist[6], json_model=datalist[7])
+
 
 @app.route("/uploaded")
 def uploaded():
     return """
     <!doctype html>
     Uploaded files: <br />
-    <p>%s</p>
+    <a href="uploads/%s">%s</a>
     """ % "<br>".join(os.listdir(app.config['UPLOAD_FOLDER'], ))
 
 
@@ -123,7 +132,13 @@ def index():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('index'))
+            print(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            datalist = rg.readGraphML(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return render_template("index.html", mod="GraphML", N=datalist[0], K=datalist[1],
+                                   avgdegree=datalist[2],
+                                   diam=datalist[3], tran=datalist[4], avgcl=datalist[5],
+                                   stddev=datalist[6], json_model=datalist[7])
+
     return """
     <!doctype html>
     <title>Upload new File</title>

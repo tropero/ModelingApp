@@ -55,6 +55,8 @@ def generate(g_model, g_given_data_dist):
     # GG = nx.barabasi_albert_graph(100, 3)
 
 
+
+
     G2 = GG.to_undirected()
     print("Is multigraph? : %r " % GG.is_multigraph())
 
@@ -154,9 +156,11 @@ def generate(g_model, g_given_data_dist):
     print("Is multigraph? : %r " % gg.is_multigraph())
 
     # print("Diameter of this graph: %f " % nx.diameter(gg))
-
-    # diameter = nx.diameter(gg)
-    diameter = 5
+    # print("Diameter of this graph: %f " % nx.diameter(gg))
+    try:
+        diameter = nx.diameter(gg)
+    except nx.exception.NetworkXError:
+        diameter = 9999999
     tup1.append(round(diameter, 2))
 
     print("Transivity of this graph: %f " % nx.transitivity(gg))
