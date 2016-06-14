@@ -97,7 +97,7 @@ def readGraphML(graph):
 
         json += "{ \n  \"graph\": [], \n  \"nodes\": ["
 
-        for node in gg.nodes()[:-1]:
+        for node in nodesListSorted[:-1]:
             print("list neighbour: %d avg:  %d " % (len(gg.neighbors(node)), avg_of_list))
             print(gg.neighbors(node))
 
@@ -122,20 +122,20 @@ def readGraphML(graph):
                 kscore = 1
 
             print("\t\t{\"size\": %s, \"score\": %s, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                int((len(gg.neighbors(node)) / len(gg.nodes())) * 10 + 1), kscore, (str(gg.nodes()[-1]))))
+                int((len(gg.neighbors(node)) / len(gg.nodes())) * 10 + 1), kscore, (str(nodesListSorted[-1]))))
             json += ("\t\t{\"size\": %s, \"score\": %s, \"id\": \"%s\",\"type\": \"circle\"}" % (
-                int((len(gg.neighbors(node)) / len(gg.nodes())) * 10 + 1), kscore, (str(gg.nodes()[-1]))))
+                int((len(gg.neighbors(node)) / len(gg.nodes())) * 10 + 1), kscore, (str(nodesListSorted[-1]))))
 
 
 
         print("\t],   \"links\": [")
         json += "\t],   \"links\": ["
-        for edge in gg.edges()[:-1]:
+        for edge in edgeListSorted[:-1]:
             print("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}," % (edge[0], edge[1]))
             json += ("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}," % (edge[0], edge[1]))
         else:
-            print("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}" % (gg.edges()[-1][0], gg.edges()[-1][1]))
-            json += ("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}" % (gg.edges()[-1][0], gg.edges()[-1][1]))
+            print("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}" % (edgeListSorted[-1][0], edgeListSorted[-1][1]))
+            json += ("\t\t{\"source\": %s, \"target\": %s, \"weight\": 1}" % (edgeListSorted[-1][0], edgeListSorted[-1][1]))
 
         print("\t], \n \"directed\": false, \n \"multigraph\": false \n}")
         json += "\t], \n \"directed\": false, \n \"multigraph\": false \n}"
